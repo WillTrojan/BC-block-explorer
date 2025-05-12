@@ -142,7 +142,8 @@ footer {
     font-size: 0.9rem;
 }
 
-.block-details {
+/* Common styles for all detail sections */
+.block-details, .transaction-details, .address-details {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -150,20 +151,34 @@ footer {
     margin: 20px 0;
 }
 
-.block-details p {
+.block-details p, .transaction-details p, .address-details p {
     margin: 10px 0;
     padding: 5px 0;
     border-bottom: 1px solid #eee;
 }
 
-.block-details p:last-child {
+.block-details p:last-child, .transaction-details p:last-child, .address-details p:last-child {
     border-bottom: none;
 }
 
-.block-details strong {
+.block-details strong, .transaction-details strong, .address-details strong {
     color: #333;
     min-width: 200px;
     display: inline-block;
+}
+
+.block-details h2, .transaction-details h2, .address-details h2 {
+    color: #1a237e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.block-details h3, .transaction-details h3, .address-details h3 {
+    color: #1a237e;
+    margin: 20px 0 10px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .title-link {
@@ -213,4 +228,57 @@ footer {
 .input p, .output p {
     margin: 5px 0;
     border-bottom: none;
+}
+
+/* Address details */
+.address-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.address-details p {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.address-details p:last-child {
+    border-bottom: none;
+}
+
+.address-details strong {
+    color: #333;
+    min-width: 200px;
+    display: inline-block;
+}
+
+.address-details h2 {
+    color: #1a237e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.detail-section {
+    margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+    color: #1a237e;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.address-hash {
+    font-family: 'Consolas', 'Monaco', monospace;
+    word-break: break-all;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    color: #455a64;
 }

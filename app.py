@@ -5,6 +5,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+# API Constants
+BLOCKSTREAM_API_BASE = 'https://blockstream.info/api'
+
 @app.template_filter('datetime')
 def format_datetime(timestamp):
     """Convert Unix timestamp to formatted datetime string"""
@@ -12,8 +15,9 @@ def format_datetime(timestamp):
 
 @app.route('/')
 def index():
+    """Display the homepage with recent blocks and network statistics"""
     # Get the latest block hash
-    latest_block_url = 'https://blockstream.info/api/blocks/tip/hash'
+    latest_block_url = f'{BLOCKSTREAM_API_BASE}/blocks/tip/hash'
     response = requests.get(latest_block_url)
     if response.status_code != 200:
         return render_template('index.html', recent_blocks=[], network_stats=None)
@@ -43,6 +47,7 @@ def index():
 
 @app.route('/search')
 def search():
+    """Handle search queries for blocks, transactions, and addresses"""
     query = request.args.get('query', '').strip()
     
     if not query:

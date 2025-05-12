@@ -1,20 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Address Information</h2>
-    {% if address %}
-        <div class="address-details">
+<div class="container">
+    <div class="address-details">
+        <h2>Address Information</h2>
+        {% if address %}
             <p><strong>Address:</strong> {{ address.address }}</p>
-            <p><strong>Chain Stats:</strong></p>
-            <ul>
-                <li>Funded: {{ address.chain_stats.funded_txo_count }} transactions</li>
-                <li>Spent: {{ address.chain_stats.spent_txo_count }} transactions</li>
-                <li>Total Received: {{ address.chain_stats.funded_txo_sum / 100000000 }} BTC</li>
-                <li>Total Spent: {{ address.chain_stats.spent_txo_sum / 100000000 }} BTC</li>
-                <li>Current Balance: {{ (address.chain_stats.funded_txo_sum - address.chain_stats.spent_txo_sum) / 100000000 }} BTC</li>
-            </ul>
-        </div>
-    {% else %}
-        <p>No address information available.</p>
-    {% endif %}
+            <p><strong>Funded Transactions:</strong> {{ address.chain_stats.funded_txo_count }}</p>
+            <p><strong>Spent Transactions:</strong> {{ address.chain_stats.spent_txo_count }}</p>
+            <p><strong>Total Received:</strong> {{ address.chain_stats.funded_txo_sum / 100000000 }} BTC</p>
+            <p><strong>Total Spent:</strong> {{ address.chain_stats.spent_txo_sum / 100000000 }} BTC</p>
+            <p><strong>Current Balance:</strong> {{ (address.chain_stats.funded_txo_sum - address.chain_stats.spent_txo_sum) / 100000000 }} BTC</p>
+        {% else %}
+            <p>No address information available.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Block Information</h2>
-    {% if block %}
-        <div class="block-details">
-            <p><strong>Block Hash:</strong> {{ block.hash }}</p>
+<div class="container">
+    <div class="block-details">
+        <h2>Block Information</h2>
+        {% if block %}
+            <p><strong>Block Hash:</strong> {{ block.id }}</p>
             <p><strong>Height:</strong> {{ block.height }}</p>
             <p><strong>Timestamp:</strong> {{ block.timestamp }}</p>
             <p><strong>Size:</strong> {{ block.size }} bytes</p>
             <p><strong>Weight:</strong> {{ block.weight }}</p>
             <p><strong>Number of Transactions:</strong> {{ block.tx_count }}</p>
-        </div>
-    {% else %}
-        <p>No block information available.</p>
-    {% endif %}
+        {% else %}
+            <p>No block information available.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
