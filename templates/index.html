@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Network Overview</h3>
+            <div id="network-stats">
+                {% if network_stats %}
+                    <p>Latest Block: #{{ network_stats.height }}</p>
+                    <p>Block Time: {{ network_stats.timestamp|datetime }}</p>
+                    <p>Block Size: {{ network_stats.size|filesizeformat }}</p>
+                    <p>Transactions: {{ network_stats.tx_count }}</p>
+                {% else %}
+                    <p>Error loading network statistics</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="recent-blocks">
+        <h2>Recent Blocks</h2>
+        {% if recent_blocks %}
+            {% for block in recent_blocks %}
+            <div class="block-item">
+                <div class="block-info">
+                    <h3>Block #{{ block.height }}</h3>
+                    <p class="block-hash">
+                        <a href="{{ url_for('search', query=block.id) }}">{{ block.id }}</a>
+                    </p>
+                    <p class="block-time">{{ block.timestamp|datetime }}</p>
+                    <p class="block-size">Size: {{ block.size|filesizeformat }}</p>
+                    <p class="block-tx">Transactions: {{ block.tx_count }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No recent blocks available</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

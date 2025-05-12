@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Transaction Information</h2>
+    {% if transaction %}
+        <div class="transaction-details">
+            <p><strong>Transaction ID:</strong> {{ transaction.txid }}</p>
+            <p><strong>Version:</strong> {{ transaction.version }}</p>
+            <p><strong>Size:</strong> {{ transaction.size }} bytes</p>
+            <p><strong>Weight:</strong> {{ transaction.weight }}</p>
+            <p><strong>Fee:</strong> {{ transaction.fee }} satoshis</p>
+            <p><strong>Status:</strong> {{ transaction.status.block_height if transaction.status else 'Unconfirmed' }}</p>
+            
+            <h3>Inputs</h3>
+            <div class="transaction-inputs">
+                {% for vin in transaction.vin %}
+                    <div class="input">
+                        <p><strong>Previous Output:</strong> {{ vin.prevout.scriptpubkey_address }}</p>
+                        <p><strong>Value:</strong> {{ vin.prevout.value }} satoshis</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h3>Outputs</h3>
+            <div class="transaction-outputs">
+                {% for vout in transaction.vout %}
+                    <div class="output">
+                        <p><strong>Address:</strong> {{ vout.scriptpubkey_address }}</p>
+                        <p><strong>Value:</strong> {{ vout.value }} satoshis</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No transaction information available.</p>
+    {% endif %}
+{% endblock %}

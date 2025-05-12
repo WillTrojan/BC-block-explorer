@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Block Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('index') }}" class="title-link">Bitcoin Block Explorer</a></h1>
+        <div class="search-container">
+            <form action="{{ url_for('search') }}" method="get">
+                <input type="text" name="query" placeholder="Enter block hash, transaction ID, or address..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Bitcoin Block Explorer</p>
+    </footer>
+</body>
+</html>
